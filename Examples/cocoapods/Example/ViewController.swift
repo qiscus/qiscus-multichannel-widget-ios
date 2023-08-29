@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         
         if ChatManager.shared.isLoggedIn() {
             if let user =  ChatManager.shared.getUser(){
-                ChatManager.shared.setUser(id: user.id, displayName: user.id, avatarUrl: user.avatarUrl.absoluteString, userProperties: userProp)
+                ChatManager.shared.setUser(id: user.id, displayName: user.name, avatarUrl: user.avatarUrl.absoluteString, userProperties: userProp)
                 ChatManager.shared.startChat(from: self, extras: ext, transition: .push(animated: true))
             }
         }

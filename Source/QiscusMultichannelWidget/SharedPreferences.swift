@@ -34,6 +34,22 @@ class SharedPreferences {
         return defaults.integer(forKey: "multichannel_channel_id")
     }
     
+    static func saveIsSecure(isSecure: Int) {
+        defaults.set(isSecure, forKey: "multichannel_is_secure")
+    }
+    
+    static func getIsSecure() -> Int? {
+        return defaults.integer(forKey: "multichannel_is_secure")
+    }
+    
+    static func saveSessionId(sessionId: String) {
+        defaults.set(sessionId, forKey: "multichannel_session_id")
+    }
+    
+    static func getSessionId() -> String? {
+        return defaults.string(forKey: "multichannel_session_id")
+    }
+    
     static func saveNewChat(isNew: Bool) {
         defaults.set(isNew, forKey: "multichannel_is_new_chat")
     }
@@ -112,5 +128,13 @@ class SharedPreferences {
     
     static func removeQiscusAccount() {
         defaults.removeObject(forKey: "multichannel_qiscus_account")
+    }
+    
+    static func removeSessionId() {
+        defaults.removeObject(forKey: "multichannel_session_id")
+    }
+    
+    static func removeSecureId() {
+        defaults.removeObject(forKey: "multichannel_is_secure")
     }
 }

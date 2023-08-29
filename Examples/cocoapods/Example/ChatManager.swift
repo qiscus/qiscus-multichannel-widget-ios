@@ -41,11 +41,30 @@ final class ChatManager {
     
     func startChat(from viewController: UIViewController, extras: String = "", transition: ChatTransitionType = .push(animated: true)) {
         
+//        //test 1
+//        qiscusWidget.automaticSendMessage(textMessage: "testing")
+//
+//        //test2
+//        let messageModel = QMessage()
+//        messageModel.message = "testing2"
+//
+//        qiscusWidget.automaticSendMessage(qMessage: messageModel)
+//
+//
+//        //test 3
+//        qiscusWidget.manualSendMessage(textMessage: "testing manual")
+        
         qiscusWidget.initiateChat()
             .setRoomTitle(title: "TITLE".localized())
+            .setSystemEventTextColor(color: UIColor.red)
+            .setTimeBackgroundColor(color: UIColor.blue)
             .setRoomSubTitle(enableSubtitle: RoomSubtitle.enable, subTitle: "SUBTITLE".localized())
             .startChat { (chatViewController) in
                 viewController.navigationController?.setViewControllers([viewController, chatViewController], animated: true)
+                
+//                let navigationController = UINavigationController(rootViewController: chatViewController)
+//
+//                viewController.present(navigationController, animated: true, completion: nil)
         }
         
     }

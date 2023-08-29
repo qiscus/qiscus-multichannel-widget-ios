@@ -96,7 +96,15 @@ extension QMessage {
     func isMyComment() -> Bool {
         //change this later when user savevd on presisstance storage
         if let user = QismoManager.shared.qiscus.getProfile() {
-            return userEmail == user.id
+            if let secure = SharedPreferences.getIsSecure(){
+                if userEmail.contains(user.id){
+                    return true
+                }else{
+                    return userEmail == user.id
+                }
+            }else{
+                return userEmail == user.id
+            }
         }else {
             return false
         }

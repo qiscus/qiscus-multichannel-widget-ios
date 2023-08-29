@@ -41,7 +41,25 @@ public class QiscusMultichannelWidget {
     }
     
     public func getUser() -> QAccount?{
-        return self.manager.getUser()
+        if SharedPreferences.getIsSecure() == 1{
+            if var account =  self.manager.getUser(){
+                if (account.id.contains("_")){
+                    let fullId = account.id.split(separator: "_")
+                    
+                    let accountSplit = fullId[1]
+                    
+                    account.id = String(accountSplit)
+                    
+                    return account
+                }else{
+                    return self.manager.getUser()
+                }
+            }else{
+                return self.manager.getUser()
+            }
+        }else{
+            return self.manager.getUser()
+        }
     }
     
     

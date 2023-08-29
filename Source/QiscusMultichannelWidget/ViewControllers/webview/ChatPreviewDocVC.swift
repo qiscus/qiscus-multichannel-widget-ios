@@ -37,13 +37,13 @@ class ChatPreviewDocVC: UIViewController, UIWebViewDelegate, WKNavigationDelegat
     }
     
     deinit{
-        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        //self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     // MARK: - UI Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.webView.navigationDelegate = self
-        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
+       // self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
         if !self.accountLinking {
             let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(ChatPreviewDocVC.share))
             shareButton.tintColor = UIColor.white

@@ -44,6 +44,7 @@ class QismoManager {
         return self.qiscus.getUserData()
     }
     
+    
     func clear() {
         self.remove(deviceToken: self.deviceToken, isDevelopment: self.isDevelopment, onSuccess: { (success) in
             //
@@ -51,14 +52,15 @@ class QismoManager {
             //
         }
         
-        self.userID = ""
+        //self.userID = ""
         self.username = ""
         self.userProperties = nil
         self.qiscus.clearUser { (error) in
             print("Qiscus clear user succeeded")
         }
+        
         SharedPreferences.removeRoomId()
-        SharedPreferences.removeQiscusAccount()
+        //SharedPreferences.removeQiscusAccount()
         SharedPreferences.removeChannelId()
         SharedPreferences.removeExtrasMultichannelConfig()
     }
@@ -82,37 +84,36 @@ class QismoManager {
     }
     
     func initiateChat(withTitle title: String, andSubtitle subtitle: String, userId: String? = nil, username: String? = nil,avatar: String? = nil, extras: String? = nil, callback: @escaping (UIViewController) -> Void)  {
-        // chat session is exist
-        if let savedRoomId = SharedPreferences.getRoomId() {
-            _ = self.qiscus.connect(delegate: self)
-            self.updateDeviceToken()
-            let ui = UIChatViewController()
-            ui.roomId = savedRoomId
-            ui.chatTitle = title
-            ui.chatSubtitle = subtitle
-            
-            
-            if !automaticSendMessage.isEmpty {
-                ui.automaticSendMessage = self.automaticSendMessage
-                self.automaticSendMessage = ""
-            }
-            
-            if automaticSendMessageModel != nil {
-                ui.automaticSendMessageModel = self.automaticSendMessageModel
-                self.automaticSendMessageModel = nil
-            }
-            
-            if !manualSendMessage.isEmpty {
-                ui.manualSendMessage = self.manualSendMessage
+
+        var userId =  userId ?? self.userID
+        var local = ""
+        
+        if var id =  SharedPreferences.getQiscusAccount(){
+            if (id.contains("_")){
+                let fullId = id.split(separator: "_")
                 
-                self.manualSendMessage = ""
+                let accountSplit = fullId[1]
+                
+                local = String(accountSplit)
+            }else{
+                local = id
             }
-            
-            callback(ui)
-        }else {
+        }else{
+            local = userId ?? self.userID
+        }
+        
+        
+        if local.lowercased() == userId.lowercased() {
+            userId = local.lowercased()
+        }else{
+            SharedPreferences.removeQiscusAccount()
+            SharedPreferences.removeSessionId()
+            SharedPreferences.removeSecureId()
+        }
+        
             var param = [
                 "app_id"            : appID,
-                "user_id"           : userId ?? self.userID,
+                "user_id"           : userId,
                 "name"              : username ?? self.username,
                 "avatar"            : avatar ?? self.avatarUrl,
                 "nonce"             : "",
@@ -133,39 +134,66 @@ class QismoManager {
                     param["channel_id"] = channelId
                 }
             }
+        
+            if let isSecure = SharedPreferences.getIsSecure() {
+                if isSecure != 0{
+                    
+                    if let getSessionId = SharedPreferences.getSessionId(){
+                        if getSessionId.lowercased() != "<null>".lowercased(){
+                            param["session_id"] = getSessionId
+                            
+                            initChat(param: param, title: title, subtitle: subtitle) { ui in
+                                callback(ui)
+                            }
+                        }
+                    }
+                }else{
+                    initChat(param: param, title: title, subtitle: subtitle) { ui in
+                        callback(ui)
+                    }
+                }
+            }else{
+                initChat(param: param, title: title, subtitle: subtitle) { ui in
+                    callback(ui)
+                }
+            }
             
-            self.network.initiateChat(param: param as [String : Any], onSuccess: { roomId in
-                SharedPreferences.saveParam(param: param)
-                SharedPreferences.saveRoomId(id: roomId)
-                _ = self.qiscus.connect(delegate: self)
-                self.updateDeviceToken()
-                
-                // prepare UI
-                let ui = UIChatViewController()
-                ui.roomId = roomId
-                ui.chatTitle = title
-                ui.chatSubtitle = subtitle
-               
-                if !self.automaticSendMessage.isEmpty{
-                    ui.automaticSendMessage = self.automaticSendMessage
-                    self.automaticSendMessage = ""
-                }
-                
-                if self.automaticSendMessageModel != nil {
-                    ui.automaticSendMessageModel = self.automaticSendMessageModel
-                    self.automaticSendMessageModel = nil
-                }
-                
-                if !self.manualSendMessage.isEmpty {
-                    ui.manualSendMessage = self.manualSendMessage
-                    self.manualSendMessage = ""
-                }
-                
-                callback(ui)
-            }, onError: { error in
-                debugPrint("failed initiate chat, \(error)")
-            })
-        }
+            
+       // }
+    }
+    
+    private func initChat(param : [String : Any], title : String, subtitle : String, callback: @escaping (UIViewController) -> Void){
+        self.network.initiateChat(param: param as [String : Any], onSuccess: { roomId in
+            SharedPreferences.saveParam(param: param)
+            SharedPreferences.saveRoomId(id: roomId)
+            _ = self.qiscus.connect(delegate: self)
+            self.updateDeviceToken()
+            
+            // prepare UI
+            let ui = UIChatViewController()
+            ui.roomId = roomId
+            ui.chatTitle = title
+            ui.chatSubtitle = subtitle
+           
+            if !self.automaticSendMessage.isEmpty{
+                ui.automaticSendMessage = self.automaticSendMessage
+                self.automaticSendMessage = ""
+            }
+            
+            if self.automaticSendMessageModel != nil {
+                ui.automaticSendMessageModel = self.automaticSendMessageModel
+                self.automaticSendMessageModel = nil
+            }
+            
+            if !self.manualSendMessage.isEmpty {
+                ui.manualSendMessage = self.manualSendMessage
+                self.manualSendMessage = ""
+            }
+            
+            callback(ui)
+        }, onError: { error in
+            debugPrint("failed initiate chat, \(error)")
+        })
     }
     
     /// Update device token when initiate chat and relogin

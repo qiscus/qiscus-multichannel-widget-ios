@@ -33,7 +33,11 @@ class QismoNetworkManager {
                 
                 let json = JSON(response.value)
                 let identityToken = json["data"]["identity_token"].string ?? ""
+                let isSecure = json["data"]["is_secure"].int ?? 0
+                
                 let roomId = json["data"]["customer_room"]["room_id"].string ?? ""
+                let sessionId = json["data"]["customer_room"]["session_id"].string ?? ""
+                
                 let channelId = json["data"]["customer_room"]["channel_id"].int ?? 0
                 let isResolved = json["data"]["customer_room"]["is_resolved"].bool ?? false
                 
@@ -44,6 +48,14 @@ class QismoNetworkManager {
                 }
                 
                 
+                
+                if sessionId.contains("<null>") ||  sessionId.contains("null") ||  sessionId.isEmpty == true{
+                    //ignored
+                }else{
+                    SharedPreferences.saveIsSecure(isSecure: isSecure)
+                    SharedPreferences.saveSessionId(sessionId: sessionId)
+                }
+                
                 if identityToken.isEmpty || roomId.isEmpty {
                     return
                 }
@@ -52,7 +64,7 @@ class QismoNetworkManager {
                 self.setQismoSdkUser(identityToken: identityToken, onSuccess: { [weak self] user in
                     //success login sdk
                     self?.qiscusUser = user
-                    SharedPreferences.saveQiscusAccount(userEmail: user.id)
+                    SharedPreferences.saveQiscusAccount(userEmail: self?.qiscusUser?.id ?? user.id)
                     onSuccess(roomId)
                 }, onError: { qError in
                     debugPrint(qError.message)

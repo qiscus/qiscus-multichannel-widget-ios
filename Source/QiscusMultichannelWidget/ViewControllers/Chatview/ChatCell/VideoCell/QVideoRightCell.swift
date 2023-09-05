@@ -200,7 +200,7 @@ class QVideoRightCell: UIBaseChatCell {
                 preview.fileName = fileName
                 preview.url = url
                 preview.roomName = "Video Preview"
-                self.currentViewController()?.navigationController?.pushViewController(preview, animated: true)
+                self.vc?.navigationController?.pushViewController(preview, animated: true)
             }
         }
     }

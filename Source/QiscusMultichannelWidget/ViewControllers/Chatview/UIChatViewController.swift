@@ -606,12 +606,14 @@ class UIChatViewController: UIViewController {
                     if (message.isMyComment() == true){
                         let cell = tableView.dequeueReusableCell(withIdentifier: "qFileRightCell", for: indexPath) as! QFileRightCell
                         cell.cellMenu = self
+                        cell.vc = self
                         
                         return cell
                     } else {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "qFileLeftCell", for: indexPath) as! QFileLeftCell
                         cell.cellMenu = self
                         cell.colorName = colorName
+                        cell.vc = self
                        return cell
                     }
                 }

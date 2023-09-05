@@ -237,13 +237,13 @@ class QFileLeftCell: UIBaseChatCell {
                     preview.fileName = fileName
                     preview.url = url
                     preview.roomName = "Document Preview"
-                    self.currentViewController()?.navigationController?.pushViewController(preview, animated: true)
+                    self.vc?.navigationController?.pushViewController(preview, animated: true)
                 } else {
                     let preview = ChatPreviewDocVC()
                     preview.fileName = fileName
                     preview.url = url
                     preview.roomName = "Document Preview"
-                    self.currentViewController()?.navigationController?.pushViewController(preview, animated: true)
+                    self.vc?.navigationController?.pushViewController(preview, animated: true)
                 }
                 
                

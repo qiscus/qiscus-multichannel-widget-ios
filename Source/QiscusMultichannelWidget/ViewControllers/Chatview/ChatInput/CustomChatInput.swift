@@ -965,7 +965,9 @@ extension UIChatViewController : UIImagePickerControllerDelegate, UINavigationCo
             }
             
         }else if fileType == "public.movie" {
-            let mediaURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
+            guard let mediaURL =  info[UIImagePickerController.InfoKey.mediaURL] as? URL else {
+                return
+            }
             let fileName = mediaURL.lastPathComponent
             
             let mediaData = try? Data(contentsOf: mediaURL)

@@ -21,7 +21,7 @@
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate QiscusMultichannelWidget into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-pod 'QiscusMultichannelWidget', '~> 2.2.1'
+pod 'QiscusMultichannelWidget', '~> 2.2.2'
 ```
 
 ## How To Use

@@ -122,7 +122,6 @@ class QPostbackLeftCell: UIBaseChatCell {
         
         if self.comment!.type == "buttons" {
             var i = 0
-            
             guard let dataPayload = message.payload else {
                 return
             }
@@ -130,17 +129,21 @@ class QPostbackLeftCell: UIBaseChatCell {
             
             let message = data["text"].string ?? ""
             
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = NSTextAlignment.center
+            
             var textAttribute:[NSAttributedString.Key: Any]{
                 get{
-                    var foregroundColorAttributeName = ColorConfiguration.leftBubbleTextColor
+                    let foregroundColorAttributeName = ColorConfiguration.leftBubbleTextColor
                     return [
                         NSAttributedString.Key.foregroundColor: foregroundColorAttributeName,
-                        NSAttributedString.Key.font: ChatConfig.chatFont
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
+                        NSAttributedString.Key.paragraphStyle : paragraphStyle
                     ]
                 }
             }
             
-            var attributedText = NSMutableAttributedString(string: message)
+            let attributedText = NSMutableAttributedString(string: message)
             let allRange = (message as NSString).range(of: message)
             attributedText.addAttributes(textAttribute, range: allRange)
             
@@ -148,18 +151,50 @@ class QPostbackLeftCell: UIBaseChatCell {
             self.textView.linkTextAttributes = self.linkTextAttributes
             
             let buttonsPayload = data["buttons"].arrayValue
-            self.buttonsViewHeight.constant = CGFloat(buttonsPayload.count * 40)
-            self.layoutIfNeeded()
+            
+//            self.buttonsViewHeight.constant = CGFloat(buttonsPayload.count * 45)
+//            self.layoutIfNeeded()
+            
+            var buttonsViewHeight = 0
+            
             for buttonsData in buttonsPayload{
-                let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.buttonsView.frame.size.width, height: 40))
+                let label = buttonsData["label"].string ?? ""
+                let check = label.count
+                
+                var height = 43
+                if check >= 60 {
+                    height = 100
+                    buttonsViewHeight += 100
+                }else{
+                    buttonsViewHeight += 45
+                }
+                let button = UIButton(frame: CGRect(x: 0, y: 0, width: Int(self.buttonsView.frame.size.width), height: height))
                 button.backgroundColor = ColorConfiguration.leftBubbleColor
+                button.titleLabel?.numberOfLines = 4
+                button.titleLabel?.lineBreakMode = .byTruncatingTail
+                button.titleLabel?.textAlignment = .center
+                button.sizeToFit()
                 button.setTitle(buttonsData["label"].stringValue, for: .normal)
                 button.setTitleColor(ColorConfiguration.leftBubbleTextColor, for: .normal)
+                button.setTitleColor(ColorConfiguration.rightBubbleColor, for: .highlighted)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
                 button.tag = i
                 button.addTarget(self, action:#selector(self.postback(sender:)), for: .touchUpInside)
+               
+                
+                if i == 0{
+                    button.addBorderTop(size: 1, color: UIColor.white, width: 2 * balloonView.frame.size.width)
+                    
+                }
+                
                 self.buttonsView.addArrangedSubview(button)
+                
                 i += 1
             }
+            
+            self.buttonsViewHeight.constant = CGFloat(buttonsViewHeight)
+            
+            
         }else{
             guard let dataPayload = message.payload else {
                 return
@@ -168,17 +203,19 @@ class QPostbackLeftCell: UIBaseChatCell {
             let data = JSON(dataPayload)
             let paramData = data["params"]
 
-            self.buttonsViewHeight.constant = CGFloat(40)
+            self.buttonsViewHeight.constant = CGFloat(45)
             self.layoutIfNeeded()
 
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.buttonsView.frame.size.width, height: 40))
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.buttonsView.frame.size.width, height: 43))
             button.backgroundColor = ColorConfiguration.leftBubbleColor
             button.setTitle(paramData["button_text"].stringValue, for: .normal)
             button.setTitleColor(ColorConfiguration.leftBubbleTextColor, for: .normal)
+            button.setTitleColor(ColorConfiguration.rightBubbleColor, for: .highlighted)
             button.tag = 2222
             button.addTarget(self, action:#selector(self.accountLinking(sender:)), for: .touchUpInside)
-
+            button.addBorderTop(size: 1, color: UIColor.white)
             self.buttonsView.addArrangedSubview(button)
+            
         }
     }
     

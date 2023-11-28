@@ -212,3 +212,41 @@ extension UITableView {
         return false
     }
 }
+
+extension UIView {
+    func addBorderTop(size: CGFloat, color: UIColor) {
+        addBorderUtility(x: 0, y: 0, width: frame.width, height: size, color: color)
+    }
+    
+    func addBorderTop(size: CGFloat, color: UIColor, width: CGFloat) {
+        addBorderUtility(x: 0, y: 0, width: width, height: size, color: color)
+    }
+    
+    fileprivate func addBorderUtility(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, color: UIColor) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        border.frame = CGRect(x: x, y: y, width: width, height: height)
+        layer.addSublayer(border)
+    }
+}
+
+extension String {
+    
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
+    }
+    
+    func heightOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.height
+    }
+    
+    func sizeOfString(usingFont font: UIFont) -> CGSize {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        return self.size(withAttributes: fontAttributes)
+        
+    }
+}

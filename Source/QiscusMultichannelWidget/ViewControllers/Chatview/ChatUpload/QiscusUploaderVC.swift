@@ -14,7 +14,7 @@ import UIKit
 import Photos
 import MobileCoreServices
 import QiscusCore
-import CropViewController
+//import CropViewController
 
 //enum QUploaderType {
 //    case image
@@ -86,7 +86,8 @@ class QiscusUploaderVC: UIViewController, UIScrollViewDelegate,UITextViewDelegat
             //self.imageCollection.addImage(image: asset)
             
             if self.imageAssets[self.imageCollection.selectedIndex]?.mediaType == PHAssetMediaType.image {
-                self.btnCrop.isHidden = false
+                //self.btnCrop.isHidden = false
+                self.btnCrop.isHidden = true
                 self.ivVideoIndicator.isHidden = true
             }
             
@@ -355,13 +356,13 @@ class QiscusUploaderVC: UIViewController, UIScrollViewDelegate,UITextViewDelegat
     }
     
     @IBAction func cropImage(_ sender: Any) {
-        guard let image = self.imageCollection.selectedImage else {
-            return
-        }
-        
-        let cropViewController = CropViewController(image: image)
-        cropViewController.delegate = self
-        present(cropViewController, animated: true, completion: nil)
+//        guard let image = self.imageCollection.selectedImage else {
+//            return
+//        }
+//        
+//        let cropViewController = CropViewController(image: image)
+//        cropViewController.delegate = self
+//        present(cropViewController, animated: true, completion: nil)
     }
     
     @IBAction func sendMedia(_ sender: Any) {
@@ -501,46 +502,46 @@ class QiscusUploaderVC: UIViewController, UIScrollViewDelegate,UITextViewDelegat
        }
 }
 
-extension QiscusUploaderVC : CropViewControllerDelegate {
-    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        var placeholder: PHObjectPlaceholder?
-        PHPhotoLibrary.shared().performChanges({
-            let createAssetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-            let albumChangeRequest = PHAssetCollectionChangeRequest()
-            guard let photoPlaceholder = createAssetRequest.placeholderForCreatedAsset else { return }
-            placeholder = photoPlaceholder
-            let fastEnumeration = NSArray(array: [photoPlaceholder] as [PHObjectPlaceholder])
-            albumChangeRequest.addAssets(fastEnumeration)
-        }, completionHandler: { [weak self] success, error in
-            guard let self = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                cropViewController.dismiss(animated: true, completion: nil)
-            }
-            guard let placeholder = placeholder else {
-                return
-            }
-            if success {
-                let assets: PHFetchResult<PHAsset> =  PHAsset.fetchAssets(withLocalIdentifiers: [placeholder.localIdentifier], options: nil)
-                guard let asset: PHAsset = assets.firstObject else {
-                    return
-                }
-                
-                self.imageAssets[self.imageCollection.selectedIndex] = asset
-                //self.imageCollection.updateSelectedImage(asset: asset)
-                
-                DispatchQueue.main.async {
-                    self.imageView.image = asset.getPreviewImage()
-                }
-                
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.deleteAssets([asset] as NSArray)
-                }) { (success, error) in
-                    
-                }
-            }
-        })
-    }
-}
+//extension QiscusUploaderVC : CropViewControllerDelegate {
+//    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+//        var placeholder: PHObjectPlaceholder?
+//        PHPhotoLibrary.shared().performChanges({
+//            let createAssetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+//            let albumChangeRequest = PHAssetCollectionChangeRequest()
+//            guard let photoPlaceholder = createAssetRequest.placeholderForCreatedAsset else { return }
+//            placeholder = photoPlaceholder
+//            let fastEnumeration = NSArray(array: [photoPlaceholder] as [PHObjectPlaceholder])
+//            albumChangeRequest.addAssets(fastEnumeration)
+//        }, completionHandler: { [weak self] success, error in
+//            guard let self = self else {
+//                return
+//            }
+//            
+//            DispatchQueue.main.async {
+//                cropViewController.dismiss(animated: true, completion: nil)
+//            }
+//            guard let placeholder = placeholder else {
+//                return
+//            }
+//            if success {
+//                let assets: PHFetchResult<PHAsset> =  PHAsset.fetchAssets(withLocalIdentifiers: [placeholder.localIdentifier], options: nil)
+//                guard let asset: PHAsset = assets.firstObject else {
+//                    return
+//                }
+//                
+//                self.imageAssets[self.imageCollection.selectedIndex] = asset
+//                //self.imageCollection.updateSelectedImage(asset: asset)
+//                
+//                DispatchQueue.main.async {
+//                    self.imageView.image = asset.getPreviewImage()
+//                }
+//                
+//                PHPhotoLibrary.shared().performChanges({
+//                    PHAssetChangeRequest.deleteAssets([asset] as NSArray)
+//                }) { (success, error) in
+//                    
+//                }
+//            }
+//        })
+//    }
+//}

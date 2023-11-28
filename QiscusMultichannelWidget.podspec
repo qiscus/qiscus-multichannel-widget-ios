@@ -33,5 +33,5 @@ s.dependency 'SwiftyJSON'
 s.dependency 'QiscusCore', '3.0.0-beta.16'
 s.dependency 'SDWebImage'
 s.dependency 'SDWebImageWebPCoder'
-s.dependency 'CropViewController'
+#s.dependency 'CropViewController'
 end

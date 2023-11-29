@@ -173,6 +173,10 @@ class QPostbackLeftCell: UIBaseChatCell {
                 button.titleLabel?.numberOfLines = 4
                 button.titleLabel?.lineBreakMode = .byTruncatingTail
                 button.titleLabel?.textAlignment = .center
+                button.titleEdgeInsets.top = 0
+                button.titleEdgeInsets.left = 5
+                button.titleEdgeInsets.bottom = 0
+                button.titleEdgeInsets.right = 5
                 button.sizeToFit()
                 button.setTitle(buttonsData["label"].stringValue, for: .normal)
                 button.setTitleColor(ColorConfiguration.leftBubbleTextColor, for: .normal)

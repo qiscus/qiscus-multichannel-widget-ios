@@ -11,10 +11,10 @@ import UIKit
 
 import QiscusCore
 
-class QTextRightCell: UIBaseChatCell {
+class QTextRightCell: UIBaseChatCell, UITextViewDelegate {
 
     @IBOutlet weak var lbName: UILabel!
-    @IBOutlet weak var tvContent: UILabel!
+    @IBOutlet weak var tvContent: UITextView!
     @IBOutlet weak var ivBubbleLeft: UIImageView!
     
         @IBOutlet weak var ivStatus: UIImageView!
@@ -25,12 +25,13 @@ class QTextRightCell: UIBaseChatCell {
     @IBOutlet weak var lbNameTrailing: NSLayoutConstraint!
     
     var actionBlock: ((QMessage) -> Void)? = nil
-    
+    var openUrl: ((URL) -> Void)? = nil
     var menuConfig = enableMenuConfig()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.setMenu()
+        self.tvContent.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,9 +54,25 @@ class QTextRightCell: UIBaseChatCell {
         self.setupBalon()
         self.status(message: message)
         
+        let attributedString = NSAttributedString(string: message.message,
+                                                  attributes: [
+                                                    NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14),
+                                                    NSAttributedString.Key.foregroundColor : ColorConfiguration.rightBubbleTextColor,
+                                                    NSAttributedString.Key.underlineColor : ColorConfiguration.rightBubbleTextColor,
+        ])
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .underlineColor: ColorConfiguration.rightBubbleTextColor,
+            .font: UIFont.systemFont(ofSize: 14),
+            .underlineStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.single.rawValue
+        ]
+        
+      
+        
         self.lbName.text = "You"
         self.lbTime.text = AppUtil.dateToHour(date: message.date())
-        self.tvContent.text = message.message
+        self.tvContent.attributedText = attributedString
+        self.tvContent.linkTextAttributes = attributes
         self.tvContent.textColor = ColorConfiguration.rightBubbleTextColor
         self.lbNameHeight.constant = 0
         self.ivBubbleLeft.layer.cornerRadius = 5.0
@@ -118,6 +135,13 @@ class QTextRightCell: UIBaseChatCell {
         formatter.timeZone      = TimeZone.current
         let defaultTimeZoneStr = formatter.string(from: date);
         return defaultTimeZoneStr
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if openUrl != nil {
+            self.openUrl!(URL)
+        }
+        return false
     }
     
 }

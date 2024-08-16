@@ -58,10 +58,18 @@ class QTextLeftCell: UIBaseChatCell, UITextViewDelegate {
         let attributedString = NSAttributedString(string: message.message,
                                                   attributes: [
                                                     NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14),
-                                                    NSAttributedString.Key.foregroundColor : ColorConfiguration.leftBubbleTextColor
+                                                    NSAttributedString.Key.foregroundColor : ColorConfiguration.leftBubbleTextColor,
+                                                    NSAttributedString.Key.underlineColor : ColorConfiguration.leftBubbleTextColor,
         ])
         
+        let attributes: [NSAttributedString.Key: Any] = [
+            .underlineColor: ColorConfiguration.leftBubbleTextColor,
+            .font: UIFont.systemFont(ofSize: 14),
+            .underlineStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.single.rawValue
+        ]
+        
         self.tvContent2.attributedText = attributedString
+        self.tvContent2.linkTextAttributes = attributes
         self.tvContent2.textColor = ColorConfiguration.leftBubbleTextColor
         
         if(isPublic == true){

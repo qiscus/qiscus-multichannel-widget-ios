@@ -504,6 +504,11 @@ class UIChatViewController: UIViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "qTextRightCell", for: indexPath) as! QTextRightCell
                 cell.menuConfig = menuConfig
                 cell.cellMenu = self
+                cell.openUrl = { url in
+                    let webView = WebViewController()
+                    webView.url = url.absoluteString
+                    self.navigationController?.pushViewController(webView, animated: true)
+                }
                 return cell
             }else{
                 if message.message.contains("[file]") && message.message.contains("[/file]") {
@@ -675,6 +680,13 @@ class UIChatViewController: UIViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "qTextRightCell", for: indexPath) as! QTextRightCell
                 cell.menuConfig = menuConfig
                 cell.cellMenu = self
+                
+                cell.openUrl = { url in
+                    let webView = WebViewController()
+                    webView.url = url.absoluteString
+                    self.navigationController?.pushViewController(webView, animated: true)
+                }
+                
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "qTextLeftCell", for: indexPath) as! QTextLeftCell
@@ -684,6 +696,13 @@ class UIChatViewController: UIViewController {
                 }else {
                     cell.isPublic = false
                 }
+                
+                cell.openUrl = { url in
+                    let webView = WebViewController()
+                    webView.url = url.absoluteString
+                    self.navigationController?.pushViewController(webView, animated: true)
+                }
+                
                 cell.cellMenu = self
                 return cell
             }

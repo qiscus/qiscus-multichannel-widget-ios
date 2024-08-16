@@ -169,6 +169,7 @@
 		11F76AB624C9DCB600C5C65A /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		11F76AB724C9DCB600C5C65A /* QiscusRealtime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QiscusRealtime.framework; path = Carthage/Build/iOS/QiscusRealtime.framework; sourceTree = "<group>"; };
 		11F76AB824C9DCB600C5C65A /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		20E4BA462BBBC670009C437A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +219,7 @@
 		11449BB9249DDB5900E32D9F = {
 			isa = PBXGroup;
 			children = (
+				20E4BA462BBBC670009C437A /* PrivacyInfo.xcprivacy */,
 				11449BC5249DDB5900E32D9F /* QiscusMultichannelWidget */,
 				11449BD0249DDB5900E32D9F /* MultichannelWidgetTests */,
 				11449BC4249DDB5900E32D9F /* Products */,

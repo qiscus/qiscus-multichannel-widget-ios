@@ -36,11 +36,11 @@ class TextConfiguration: NSObject {
     var galeryAccessAlertTitle = "Important"
     
     /// Your text to show as content alert when you access gallery but you not allow gallery access, Default value : "We need photos access to upload image.\nPlease allow photos access in your iPhone Setting"
-    var galeryAccessAlertText = "We need gallery access to upload images. \nPlease go to iphone settings -> privacy -> gallery, to allow gallery permission"
-    var locationAccessAlertText = "We need location access to share your current location. \nPlease go to iphone settings -> privacy -> location, to allow location permissions"
-    var cameraAccessAlertText = "We need camera access to upload image from camera. \nPlease go to iphone settings -> privacy -> camera, to allow camera permissions"
+    var galeryAccessAlertText = "We need photos access to upload image.\nPlease allow photos access in your iPhone Setting"
+    var locationAccessAlertText = "We need location access to share your current location.\nPlease allow location access in your iPhone Setting"
+    var cameraAccessAlertText = "We need camera access to upload image from camera.\nPlease allow camera access in your iPhone Setting"
     var noCameraAlertText = "This device does not have a camera"
-    var microphoneAccessAlertText = "We need microphone access to upload recorded audio. \nPplease go to settings -> privacy -> microphone, to allow microphone permissions"
+    var microphoneAccessAlertText = "We need microphone access to upload recorded audio.\nPlease allow mictophone access in your iPhone Setting"
     
     /// Your text to show as title confirmation when you want to upload image/file, Default value : "CONFIRMATION"
     var confirmationTitle = "CONFIRMATION"//.getLocalize()

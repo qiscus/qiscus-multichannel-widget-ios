@@ -365,7 +365,7 @@ extension UIChatViewController : CustomChatInputDelegate {
             let text = TextConfiguration.sharedInstance.galeryAccessAlertText
             QPopUpView.showAlert(withTarget: self, vc: self, message: text,
                                  doneAction: {
-                                    
+                self.goToIPhoneSetting()
             },
                                  cancelAction: {}
             )

@@ -876,30 +876,35 @@ extension UIChatViewController: UIChatViewDelegate {
     }
     
     func onUser(name: String, isOnline: Bool, message: String) {
-        self.chatTitleView.labelSubtitle.text = message
+        if ChatConfig.enableSubtitle == true {
+            self.chatTitleView.labelSubtitle.text = message
+        }
     }
     
     func onUser(name: String, typing: Bool) {
-        if typing {
-            if let room = self.presenter.room {
-                if room.type == .group {
-                    self.chatTitleView.labelSubtitle.text = "\(name) is Typing..."
-                }else {
-                    self.chatTitleView.labelSubtitle.text = "is Typing..."
+        if ChatConfig.enableSubtitle == true {
+            if typing {
+                if let room = self.presenter.room {
+                    if room.type == .group {
+                        self.chatTitleView.labelSubtitle.text = "\(name) is Typing..."
+                    }else {
+                        self.chatTitleView.labelSubtitle.text = "is Typing..."
+                    }
+                }
+            }else {
+                if let room = self.presenter.room {
+                    self.chatTitleView.labelSubtitle.text = self.chatSubtitle
                 }
             }
-        }else {
-            if let room = self.presenter.room {
-                self.chatTitleView.labelSubtitle.text = self.chatSubtitle
+            
+            
+            if self.typingTimer != nil {
+                self.typingTimer?.invalidate()
             }
+            
+            self.typingTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.resetSubtitle), userInfo: nil, repeats: false)
         }
         
-        
-        if typingTimer != nil {
-            typingTimer?.invalidate()
-        }
-        
-        typingTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.resetSubtitle), userInfo: nil, repeats: false)
     }
     
     @objc func resetSubtitle() {

@@ -20,7 +20,7 @@ enum ChatTransitionType {
 final class ChatManager {
     static let shared: ChatManager = ChatManager()
     lazy var qiscusWidget: QiscusMultichannelWidget = {
-       return QiscusMultichannelWidget(appID: Your_AppID)
+       return QiscusMultichannelWidget(appID: "weapr-01wjzygbxjmeosf")
     }()
     
     func setUser(id: String, displayName: String, avatarUrl: String = "", userProperties :  [[String:Any]]? = nil) {
@@ -42,7 +42,7 @@ final class ChatManager {
     func startChat(from viewController: UIViewController, extras: String = "", transition: ChatTransitionType = .push(animated: true)) {
         
 //        //test 1
-//        qiscusWidget.automaticSendMessage(textMessage: "testing")
+        qiscusWidget.automaticSendMessage(textMessage: "https://github.com/qiscus/qiscus-multichannel-widget-ios")
 //
 //        //test2
 //        let messageModel = QMessage()
@@ -58,7 +58,7 @@ final class ChatManager {
             .setRoomTitle(title: "TITLE".localized())
             .setSystemEventTextColor(color: UIColor.red)
             .setTimeBackgroundColor(color: UIColor.blue)
-            .setRoomSubTitle(enableSubtitle: RoomSubtitle.enable, subTitle: "SUBTITLE".localized())
+            .setRoomSubTitle(enableSubtitle: RoomSubtitle.disable, subTitle: "SUBTITLE".localized())
             .startChat { (chatViewController) in
                 viewController.navigationController?.setViewControllers([viewController, chatViewController], animated: true)
                 

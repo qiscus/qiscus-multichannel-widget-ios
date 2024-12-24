@@ -229,6 +229,7 @@ open class MultichannelWidgetConfig {
         ChatConfig.showSystemMessage = self.showSystemMessage
         ChatConfig.showAvatarSender = self.showAvatarSender
         ChatConfig.showUserNameSender = self.showUsernameSender
+        ChatConfig.enableSubtitle = self.enableSubtitle
         
         SharedPreferences.saveExtrasMultichannelConfig(extras: self.extras)
         if let channelId = self.channelId {
@@ -259,6 +260,7 @@ open class MultichannelWidgetConfig {
         ChatConfig.showSystemMessage = self.showSystemMessage
         ChatConfig.showAvatarSender = self.showAvatarSender
         ChatConfig.showUserNameSender = self.showUsernameSender
+        ChatConfig.enableSubtitle = self.enableSubtitle
         
         ChatConfig.showAvatarSender = self.showAvatarSender
         ChatConfig.showUserNameSender = self.showUsernameSender

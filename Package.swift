@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,8 +20,8 @@ let package = Package(
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.10.2")),
         .package(url: "https://github.com/Alamofire/AlamofireImage.git", .upToNextMajor(from: "4.3.0")),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.10.0"),
-	.package(url: "https://github.com/SDWebImage/SDWebImageWebPCoder.git", from: "0.14.6"),
-	.package(url: "https://github.com/qiscus/QiscusCore-iOS.git", from: "3.0.0-beta.18")
+	.package(url: "https://github.com/SDWebImage/SDWebImageWebPCoder.git", from: "0.3.0"),
+	.package(url: "https://github.com/qiscus/QiscusCore-iOS.git", .branch ("support-carthage-v3"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,12 +34,9 @@ let package = Package(
                 "AlamofireImage",
                 "SDWebImage",
 		"SDWebImageWebPCoder",
-                 .product(name: "QiscusCore", package: "QiscusCore-iOS")
+                .product(name: "QiscusCore", package: "QiscusCore-iOS")
             ],
             path: "Source/QiscusMultichannelWidget"
         ),
-        .testTarget(
-            name: "QiscusMultichannelWidgetTests",
-            dependencies: ["QiscusMultichannelWidget"]),
     ]
 )

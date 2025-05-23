@@ -33,7 +33,8 @@ let package = Package(
                 "Alamofire",
                 "AlamofireImage",
                 "SDWebImage",
-                "QiscusCore-iOS"
+		"SDWebImageWebPCoder",
+                 .product(name: "QiscusCore", package: "QiscusCore-iOS"),
             ],
             path: "Source/QiscusMultichannelWidget"
         ),

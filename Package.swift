@@ -14,7 +14,8 @@ let package = Package(
             name: "QiscusMultichannelWidget",
             targets: ["QiscusMultichannelWidget"]),
     ],
-    dependencies: [
+	
+	dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.2"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.10.2")),
@@ -36,7 +37,10 @@ let package = Package(
 		"SDWebImageWebPCoder",
                 .product(name: "QiscusCore", package: "QiscusCore-iOS")
             ],
-            path: "Source/QiscusMultichannelWidget"
+            path: "Source/QiscusMultichannelWidget",
+	    resources: [
+        	.process("Source/QiscusMultichannelWidget/")
+	    ]
         ),
     ]
 )

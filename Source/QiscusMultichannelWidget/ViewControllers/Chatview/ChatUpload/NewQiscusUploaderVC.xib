@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewQiscusUploaderVC" customModule="QiscusMultichannelWidget" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewQiscusUploaderVC" customModule="QiscusMultichannelWidget">
             <connections>
                 <outlet property="constraintProgressWidth" destination="Wgw-lV-9Lp" id="TcI-ie-15K"/>
                 <outlet property="containerProgressView" destination="XY0-YE-diU" id="KPT-tx-HHr"/>
@@ -30,14 +30,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHk-uv-ygE">
-                    <rect key="frame" x="0.0" y="88" width="414" height="653"/>
+                    <rect key="frame" x="0.0" y="92" width="414" height="649"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yDF-TI-BNY">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="653"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="649"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </imageView>
                         <view clipsSubviews="YES" alpha="0.55000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XY0-YE-diU">
-                            <rect key="frame" x="182" y="301.5" width="50" height="50"/>
+                            <rect key="frame" x="182" y="299.5" width="50" height="50"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qT-qn-DMS" userLabel="progressView">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -145,7 +145,7 @@
                         <constraint firstItem="VKX-wa-0hr" firstAttribute="centerY" secondItem="pJb-b8-C46" secondAttribute="centerY" id="wD0-IV-IhE"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91K-kh-Yps" customClass="UploadImageCollection" customModule="QiscusMultichannelWidget" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91K-kh-Yps" customClass="UploadImageCollection" customModule="QiscusMultichannelWidget">
                     <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                     <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

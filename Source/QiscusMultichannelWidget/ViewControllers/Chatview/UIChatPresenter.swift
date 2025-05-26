@@ -535,7 +535,7 @@ extension UIChatPresenter : QiscusCoreRoomDelegate {
             self.addNewCommentUI(message, isIncoming: true)
         }
         
-        if message.type == "system_event" && message.message.lowercased().contains("admin marked this conversation as resolved") {
+        if message.type == "system_event" && message.message.lowercased().contains("marked this conversation as resolved") {
             viewPresenter?.onRoomResolved(isResolved: true)
         }
     }

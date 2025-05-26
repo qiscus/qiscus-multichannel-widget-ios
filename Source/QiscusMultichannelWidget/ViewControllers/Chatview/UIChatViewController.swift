@@ -1060,7 +1060,15 @@ extension UIChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        let comment = self.presenter.getMessage(atIndexPath: indexPath)
+        
+        if comment.type == "whisper"{
+            return 1
+        }else{
+            return UITableView.automaticDimension
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

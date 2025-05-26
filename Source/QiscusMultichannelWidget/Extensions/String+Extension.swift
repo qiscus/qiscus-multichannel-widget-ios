@@ -27,4 +27,17 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
+    func fileExtension(fromURL url:String) -> String{
+        var ext = ""
+        if url.range(of: ".") != nil{
+            let fileNameArr = url.split(separator: ".")
+            ext = String(fileNameArr.last!).lowercased()
+            if ext.contains("?"){
+                let newArr = ext.split(separator: "?")
+                ext = String(newArr.first!).lowercased()
+            }
+        }
+        return ext
+    }
 }

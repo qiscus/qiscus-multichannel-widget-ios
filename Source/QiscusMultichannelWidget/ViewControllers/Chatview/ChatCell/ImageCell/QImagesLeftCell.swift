@@ -130,14 +130,33 @@ class QImagesLeftCell: UIBaseChatCell {
                 
                 self.ivComment.backgroundColor = ColorConfiguration.leftBubbleColor
                 
-                self.ivComment.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                DispatchQueue.global(qos: .background).sync {
+                if url.fileExtension(fromURL: url) == "gif"{
+                    self.ivComment.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                    
+                    QismoManager.shared.qiscus.shared.getThumbnailURL(url: fileImage) { url in
+                        self.ivComment.sd_setImage(with: URL(string: url) ?? URL(string: "https://"), placeholderImage: nil, options: .highPriority) { (uiImage, error, cache, urlPath) in
+                            if urlPath != nil && uiImage != nil{
+                                self.ivComment.af_setImage(withURL: urlPath!)
+                                
+                            }
+                        }
+                    } onError: { error in
+                        self.ivComment.sd_setImage(with: URL(string: url) ?? URL(string: "https://"), placeholderImage: nil, options: .highPriority) { (uiImage, error, cache, urlPath) in
+                            if urlPath != nil && uiImage != nil{
+                                self.ivComment.af_setImage(withURL: urlPath!)
+                            }
+                        }
+                    }
+                    
+                }else{
+                    self.ivComment.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
                     self.ivComment.sd_setImage(with: URL(string: fileImage) ?? URL(string: "https://"), placeholderImage: nil, options: .highPriority) { (uiImage, error, cache, urlPath) in
                         if urlPath != nil && uiImage != nil{
                             self.ivComment.af_setImage(withURL: urlPath!)
                         }
                     }
                 }
+                
             }
         }else{
             var fileImage = message.getAttachmentURL(message: message.message)
@@ -149,11 +168,9 @@ class QImagesLeftCell: UIBaseChatCell {
             self.ivComment.backgroundColor = ColorConfiguration.leftBubbleColor
             
             self.ivComment.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            DispatchQueue.global(qos: .background).sync {
-                self.ivComment.sd_setImage(with: URL(string: fileImage) ?? URL(string: "https://"), placeholderImage: nil, options: .highPriority) { (uiImage, error, cache, urlPath) in
-                    if urlPath != nil && uiImage != nil{
-                        self.ivComment.af_setImage(withURL: urlPath!)
-                    }
+            self.ivComment.sd_setImage(with: URL(string: fileImage) ?? URL(string: "https://"), placeholderImage: nil, options: .highPriority) { (uiImage, error, cache, urlPath) in
+                if urlPath != nil && uiImage != nil{
+                    self.ivComment.af_setImage(withURL: urlPath!)
                 }
             }
         }

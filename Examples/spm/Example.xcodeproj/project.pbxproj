@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20E267492DE0BA37002B38AC /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */; };
-		20E2674C2DE0BD4E002B38AC /* QiscusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 20E2674B2DE0BD4E002B38AC /* QiscusCore */; };
+		20CF66E02DE40AC4005682AE /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E267492DE0BA37002B38AC /* QiscusMultichannelWidget in Frameworks */,
-				20E2674C2DE0BD4E002B38AC /* QiscusCore in Frameworks */,
+				20CF66E02DE40AC4005682AE /* QiscusMultichannelWidget in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +93,7 @@
 			packageProductDependencies = (
 				20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */,
 				20E2674B2DE0BD4E002B38AC /* QiscusCore */,
+				20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */,
 			);
 			productName = Example;
 			productReference = 20E2670B2DE09BDB002B38AC /* Example.app */;
@@ -125,8 +124,7 @@
 			mainGroup = 20E267022DE09BDB002B38AC;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				20E267472DE0BA37002B38AC /* XCLocalSwiftPackageReference "../../../qiscus-multichannel-widget-ios" */,
-				20E2674A2DE0BD4D002B38AC /* XCLocalSwiftPackageReference "../../../../SDKV3/QiscusCore-iOS" */,
+				20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 20E2670C2DE09BDB002B38AC /* Products */;
@@ -357,18 +355,23 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		20E267472DE0BA37002B38AC /* XCLocalSwiftPackageReference "../../../qiscus-multichannel-widget-ios" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../qiscus-multichannel-widget-ios";
+/* Begin XCRemoteSwiftPackageReference section */
+		20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qiscus/qiscus-multichannel-widget-ios.git";
+			requirement = {
+				branch = "support-spm";
+				kind = branch;
+			};
 		};
-		20E2674A2DE0BD4D002B38AC /* XCLocalSwiftPackageReference "../../../../SDKV3/QiscusCore-iOS" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../../SDKV3/QiscusCore-iOS";
-		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */;
+			productName = QiscusMultichannelWidget;
+		};
 		20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QiscusMultichannelWidget;

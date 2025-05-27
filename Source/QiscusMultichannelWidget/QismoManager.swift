@@ -25,6 +25,7 @@ class QismoManager {
     
     var network : QismoNetworkManager!
     var qiscus : QiscusCore!
+    var qismoInterceptor : QismoInterceptorDelegate?
     var qiscusServer = QiscusServer(url: URL(string: "https://api3.qiscus.com")!, realtimeURL: "", realtimePort: 80)
     var deviceToken : String = "" // save device token for 1st time or before login
     var isDevelopment : Bool = false
@@ -322,5 +323,17 @@ extension QismoManager : QiscusConnectionDelegate {
             }
         }
     }
+    
+}
+
+public protocol QismoInterceptorDelegate {
+    /// interceptor message
+    ///
+    /// - Parameters:
+    ///   - comment: new comment object
+    //func interceptBeforeSendMessage(_ message: QMessage) -> QMessage
+    
+    
+    func interceptBeforeSendMessage(_ message: QMessage, onUpdateMessage: @escaping (QMessage) -> Void)
     
 }

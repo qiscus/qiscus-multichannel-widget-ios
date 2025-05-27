@@ -390,9 +390,27 @@ extension UIChatViewController : CustomChatInputDelegate {
     }
     
     func sendMessage(message: QMessage) {
-        let postedComment = message
         
-        self.send(message: postedComment, onSuccess: { (comment) in
+        var postedComment = message
+        
+        if let delegate = QismoManager.shared.qismoInterceptor {
+            //postedComment = delegate.interceptBeforeSendMessage(message)
+            
+            delegate.interceptBeforeSendMessage(message) { updateMessage in
+                self.send(message: updateMessage)
+            }
+            
+        }else{
+            self.send(message: postedComment)
+        }
+        
+        
+    }
+    
+    func send(message: QMessage){
+        print("message update =\(message.message)")
+        
+        self.send(message: message, onSuccess: { (comment) in
             //success
         }) { (error) in
             //error

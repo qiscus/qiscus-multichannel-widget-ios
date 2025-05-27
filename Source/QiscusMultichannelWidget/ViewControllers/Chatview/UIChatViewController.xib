@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIChatViewController" customModule="MultichannelWidget" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIChatViewController" customModule="QiscusMultichannelWidget">
             <connections>
                 <outlet property="constraintViewInputBottom" destination="AVd-I5-3cz" id="5XK-Jf-2YL"/>
                 <outlet property="constraintViewInputHeight" destination="JR1-fH-mcK" id="xAU-8d-HkN"/>
@@ -46,28 +47,29 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvK-Gz-gWg">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="597"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCm-Qx-TqW">
-                            <rect key="frame" x="129" y="326.5" width="117.5" height="20.5"/>
+                            <rect key="frame" x="129.5" y="316.5" width="116.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Wait" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ne-es-v2Y">
-                            <rect key="frame" x="40" y="355" width="295" height="20.5"/>
+                            <rect key="frame" x="40" y="345" width="295" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_send_message" translatesAutoresizingMaskIntoConstraints="NO" id="Bb8-5U-ENo">
-                            <rect key="frame" x="87.5" y="103.5" width="200" height="200"/>
+                            <rect key="frame" x="87.5" y="93.5" width="200" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="bih-Sm-hHq"/>
                                 <constraint firstAttribute="width" constant="200" id="eaD-F4-wyw"/>
                             </constraints>
                         </imageView>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="eEe-ot-zp1"/>
                     <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="0ne-es-v2Y" firstAttribute="leading" secondItem="eEe-ot-zp1" secondAttribute="leading" constant="40" id="4WH-Mx-caL"/>
@@ -78,21 +80,21 @@
                         <constraint firstItem="oCm-Qx-TqW" firstAttribute="top" secondItem="Bb8-5U-ENo" secondAttribute="bottom" constant="23" id="pwC-EK-EsE"/>
                         <constraint firstItem="eEe-ot-zp1" firstAttribute="trailing" secondItem="0ne-es-v2Y" secondAttribute="trailing" constant="40" id="ush-bE-PaS"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="eEe-ot-zp1"/>
                 </view>
                 <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-Lu-tNz">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWG-dq-2kV">
                     <rect key="frame" x="0.0" y="607" width="0.0" height="10"/>
-                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="a4v-cW-yfh"/>
                         <constraint firstAttribute="width" id="usE-f1-N8e"/>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fvK-Gz-gWg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9Z0-Mf-PUW"/>
@@ -109,11 +111,16 @@
                 <constraint firstItem="XjR-Mj-c6H" firstAttribute="top" secondItem="sWG-dq-2kV" secondAttribute="bottom" id="p63-cx-2Mn"/>
                 <constraint firstItem="sWG-dq-2kV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z1K-Ji-wTh"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="800.79999999999995" y="472.71364317841085"/>
         </view>
     </objects>
     <resources>
         <image name="img_send_message" width="181" height="155"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

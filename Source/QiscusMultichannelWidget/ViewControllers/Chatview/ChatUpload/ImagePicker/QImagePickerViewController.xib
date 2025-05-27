@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QImagePickerViewController" customModule="Mekari_Chat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QImagePickerViewController" customModule="QiscusMultichannelWidget">
             <connections>
                 <outlet property="customNavigationItem" destination="wl0-Ew-p2v" id="6rS-8W-c3k"/>
                 <outlet property="mediaCollectionView" destination="9S6-tV-5NE" id="qFx-Zv-dhF"/>
@@ -21,8 +22,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9S6-tV-5NE">
-                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ou5-mH-hvK">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,7 +32,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0f6-PD-JY6">
-                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                     <items>
                         <navigationItem title="0/0" id="wl0-Ew-p2v">
                             <barButtonItem key="leftBarButtonItem" title="Cancel" id="dto-Hq-tgp">
@@ -48,7 +49,8 @@
                     </items>
                 </navigationBar>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9S6-tV-5NE" secondAttribute="trailing" id="JQ9-eO-oVT"/>
                 <constraint firstItem="0f6-PD-JY6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Okd-Ik-NfI"/>
@@ -58,8 +60,12 @@
                 <constraint firstItem="0f6-PD-JY6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nbb-XA-65X"/>
                 <constraint firstItem="0f6-PD-JY6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="s0K-mQ-hJs"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -15,7 +15,7 @@ public enum RoomSubtitle: CaseIterable {
 }
 
 open class MultichannelWidgetConfig {
-   
+    var qismoInterceptorDelegate : QismoInterceptorDelegate? = nil
     private var avatar: String = ""
     private var extras: String = "" //string json
     var title: String = "Customer Service"
@@ -231,6 +231,8 @@ open class MultichannelWidgetConfig {
         ChatConfig.showUserNameSender = self.showUsernameSender
         ChatConfig.enableSubtitle = self.enableSubtitle
         
+        QismoManager.shared.qismoInterceptor = self.qismoInterceptorDelegate
+        
         SharedPreferences.saveExtrasMultichannelConfig(extras: self.extras)
         if let channelId = self.channelId {
             SharedPreferences.saveChannelId(id: channelId)
@@ -268,9 +270,16 @@ open class MultichannelWidgetConfig {
         if let channelId = self.channelId {
             SharedPreferences.saveChannelId(id: channelId)
         }
+        
+        QismoManager.shared.qismoInterceptor = self.qismoInterceptorDelegate
        
         QismoManager.shared.chatViewController(withRoomId: id, Title: self.title, andSubtitle: self.subtitle) { (chatview) in
             callback(chatview)
         }
+    }
+    
+    public func setQismoInterceptor(delegate : QismoInterceptorDelegate?) -> MultichannelWidgetConfig {
+        self.qismoInterceptorDelegate = delegate
+        return self
     }
 }

@@ -80,6 +80,7 @@
 		11F76ABB24C9DCB600C5C65A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F76AB624C9DCB600C5C65A /* CocoaAsyncSocket.framework */; };
 		11F76ABC24C9DCB600C5C65A /* QiscusRealtime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F76AB724C9DCB600C5C65A /* QiscusRealtime.framework */; };
 		11F76ABD24C9DCB600C5C65A /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F76AB824C9DCB600C5C65A /* Starscream.framework */; };
+		20E266E32DE0735E002B38AC /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E266E22DE0735E002B38AC /* Package.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,7 @@
 		11F76AB624C9DCB600C5C65A /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		11F76AB724C9DCB600C5C65A /* QiscusRealtime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QiscusRealtime.framework; path = Carthage/Build/iOS/QiscusRealtime.framework; sourceTree = "<group>"; };
 		11F76AB824C9DCB600C5C65A /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		20E266E22DE0735E002B38AC /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		20E4BA462BBBC670009C437A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,6 +221,7 @@
 		11449BB9249DDB5900E32D9F = {
 			isa = PBXGroup;
 			children = (
+				20E266E22DE0735E002B38AC /* Package.swift */,
 				20E4BA462BBBC670009C437A /* PrivacyInfo.xcprivacy */,
 				11449BC5249DDB5900E32D9F /* QiscusMultichannelWidget */,
 				11449BD0249DDB5900E32D9F /* MultichannelWidgetTests */,
@@ -608,6 +611,7 @@
 				11449C30249DDB9800E32D9F /* ChatConfig.swift in Sources */,
 				11449C62249DDB9800E32D9F /* SharedPreferences.swift in Sources */,
 				11449C33249DDB9800E32D9F /* Image.swift in Sources */,
+				20E266E32DE0735E002B38AC /* Package.swift in Sources */,
 				04981C3624B6E7FC0067FD14 /* WebFileViewController.swift in Sources */,
 				11449C34249DDB9800E32D9F /* UIViewController.swift in Sources */,
 				11449C4A249DDB9800E32D9F /* QReplyRightCell.swift in Sources */,

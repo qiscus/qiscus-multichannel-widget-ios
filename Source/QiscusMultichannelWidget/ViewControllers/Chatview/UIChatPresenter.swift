@@ -515,6 +515,10 @@ class UIChatPresenter: UIChatUserInteraction {
 
 // MARK: Core Delegate
 extension UIChatPresenter : QiscusCoreRoomDelegate {
+    func onUserTypingAI(userId: String, roomId: String, typing: Bool, textMessage: String, senderName: String) {
+        
+    }
+    
     func onMessageUpdated(message: QMessage) {
         
     }

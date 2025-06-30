@@ -386,7 +386,7 @@ class UIChatViewController: UIViewController {
         self.registerClass(nib: UINib(nibName: "QReplyRightCell", bundle:QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qReplyRightCell")
         self.registerClass(nib: UINib(nibName: "EmptyCell", bundle:QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "emptyCell")
         self.registerClass(nib: UINib(nibName: "QCardLeftCell", bundle: QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qCardLeftCell")
-        self.registerClass(nib: UINib(nibName: "QPostbackLeftCell", bundle: QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qPostBackLeftCell")
+        self.registerClass(nib: UINib(nibName: "QPostBackLeftCell", bundle: QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "postBack")
         self.registerClass(nib: UINib(nibName: "QPostbackRightCell", bundle: QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qPostBackRightCell")
         self.registerClass(nib: UINib(nibName: "QSystemCell", bundle:QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qSystemCell")
         self.registerClass(nib: UINib(nibName: "QCarouselCell", bundle: QiscusMultichannelWidget.bundle), forMessageCellWithReuseIdentifier: "qCarouselCell")
@@ -659,7 +659,7 @@ class UIChatViewController: UIViewController {
                 cell.delegateChat = self
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "qPostBackLeftCell", for: indexPath) as! QPostbackLeftCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "postBack", for: indexPath) as! QPostBackLeftCell
                 cell.colorName = colorName
                 cell.delegateChat = self
                 return cell
@@ -670,7 +670,7 @@ class UIChatViewController: UIViewController {
                 cell.delegateChat = self
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "qPostBackLeftCell", for: indexPath) as! QPostbackLeftCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "postBack", for: indexPath) as! QPostBackLeftCell
                 cell.colorName = colorName
                 cell.delegateChat = self
                 return cell

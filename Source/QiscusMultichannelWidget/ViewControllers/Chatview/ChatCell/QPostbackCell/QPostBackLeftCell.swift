@@ -10,7 +10,7 @@ import QiscusCore
 import SwiftyJSON
 import AlamofireImage
 
-class QPostbackLeftCell: UIBaseChatCell {
+class QPostBackLeftCell: UIBaseChatCell {
     let maxWidth:CGFloat = 0.6 * UIScreen.main.bounds.size.width
     let minWidth:CGFloat = 0.6 * UIScreen.main.bounds.size.width
     let buttonWidth:CGFloat = 0.6 * UIScreen.main.bounds.size.width

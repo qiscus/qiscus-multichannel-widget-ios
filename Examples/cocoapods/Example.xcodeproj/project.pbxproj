@@ -149,6 +149,8 @@
 				id,
 			);
 			mainGroup = 048C41DA2408D01300EA7AAA;
+			packageReferences = (
+			);
 			productRefGroup = 048C41E42408D01300EA7AAA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

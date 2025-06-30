@@ -93,3 +93,10 @@ final class ChatManager {
 //        .startChat(withRoomId: <#T##String#>, callback: <#T##(UIViewController) -> Void#>)
     }
 }
+
+extension ChatManager : QismoInterceptorDelegate {
+    func interceptBeforeSendMessage(_ message: QMessage, onUpdateMessage: @escaping (QMessage) -> Void) {
+        
+        onUpdateMessage(message)
+    }
+}

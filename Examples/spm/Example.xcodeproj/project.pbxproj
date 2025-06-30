@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20CF66E02DE40AC4005682AE /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */; };
+		20CF66E32DE4132D005682AE /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20CF66E22DE4132D005682AE /* QiscusMultichannelWidget */; };
+		20CF66E42DE5AC64005682AE /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */; };
+		20CF66E52DE5AC64005682AE /* QiscusCore in Frameworks */ = {isa = PBXBuildFile; productRef = 20E2674B2DE0BD4E002B38AC /* QiscusCore */; };
+		20EE9F692E12679200FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9F682E12679200FC278F /* QiscusMultichannelWidget */; };
+		20EE9F752E127C3200FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9F742E127C3200FC278F /* QiscusMultichannelWidget */; };
+		20EE9F932E127C9F00FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9F922E127C9F00FC278F /* QiscusMultichannelWidget */; };
+		20EE9FC02E127F7A00FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9FBF2E127F7A00FC278F /* QiscusMultichannelWidget */; };
+		20EE9FC42E12806600FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9FC32E12806600FC278F /* QiscusMultichannelWidget */; };
+		20EE9FCA2E12817000FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9FC92E12817000FC278F /* QiscusMultichannelWidget */; };
+		20EE9FCD2E12824800FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9FCC2E12824800FC278F /* QiscusMultichannelWidget */; };
+		20EE9FD02E12836700FC278F /* QiscusMultichannelWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 20EE9FCF2E12836700FC278F /* QiscusMultichannelWidget */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +50,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20CF66E02DE40AC4005682AE /* QiscusMultichannelWidget in Frameworks */,
+				20EE9FC42E12806600FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20EE9F692E12679200FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20EE9FCD2E12824800FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20CF66E52DE5AC64005682AE /* QiscusCore in Frameworks */,
+				20EE9F752E127C3200FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20CF66E42DE5AC64005682AE /* QiscusMultichannelWidget in Frameworks */,
+				20EE9F932E127C9F00FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20EE9FC02E127F7A00FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20EE9FCA2E12817000FC278F /* QiscusMultichannelWidget in Frameworks */,
+				20CF66E32DE4132D005682AE /* QiscusMultichannelWidget in Frameworks */,
+				20EE9FD02E12836700FC278F /* QiscusMultichannelWidget in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +113,15 @@
 			packageProductDependencies = (
 				20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */,
 				20E2674B2DE0BD4E002B38AC /* QiscusCore */,
-				20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */,
+				20CF66E22DE4132D005682AE /* QiscusMultichannelWidget */,
+				20EE9F682E12679200FC278F /* QiscusMultichannelWidget */,
+				20EE9F742E127C3200FC278F /* QiscusMultichannelWidget */,
+				20EE9F922E127C9F00FC278F /* QiscusMultichannelWidget */,
+				20EE9FBF2E127F7A00FC278F /* QiscusMultichannelWidget */,
+				20EE9FC32E12806600FC278F /* QiscusMultichannelWidget */,
+				20EE9FC92E12817000FC278F /* QiscusMultichannelWidget */,
+				20EE9FCC2E12824800FC278F /* QiscusMultichannelWidget */,
+				20EE9FCF2E12836700FC278F /* QiscusMultichannelWidget */,
 			);
 			productName = Example;
 			productReference = 20E2670B2DE09BDB002B38AC /* Example.app */;
@@ -124,7 +152,7 @@
 			mainGroup = 20E267022DE09BDB002B38AC;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */,
+				20EE9FCE2E12836700FC278F /* XCLocalSwiftPackageReference "../../../qiscus-multichannel-widget-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 20E2670C2DE09BDB002B38AC /* Products */;
@@ -355,21 +383,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/qiscus/qiscus-multichannel-widget-ios.git";
-			requirement = {
-				branch = "support-spm";
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		20EE9FCE2E12836700FC278F /* XCLocalSwiftPackageReference "../../../qiscus-multichannel-widget-ios" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../qiscus-multichannel-widget-ios";
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		20CF66DF2DE40AC4005682AE /* QiscusMultichannelWidget */ = {
+		20CF66E22DE4132D005682AE /* QiscusMultichannelWidget */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 20CF66DE2DE40AC4005682AE /* XCRemoteSwiftPackageReference "qiscus-multichannel-widget-ios" */;
 			productName = QiscusMultichannelWidget;
 		};
 		20E267482DE0BA37002B38AC /* QiscusMultichannelWidget */ = {
@@ -379,6 +402,38 @@
 		20E2674B2DE0BD4E002B38AC /* QiscusCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QiscusCore;
+		};
+		20EE9F682E12679200FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9F742E127C3200FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9F922E127C9F00FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9FBF2E127F7A00FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9FC32E12806600FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9FC92E12817000FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9FCC2E12824800FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
+		};
+		20EE9FCF2E12836700FC278F /* QiscusMultichannelWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QiscusMultichannelWidget;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

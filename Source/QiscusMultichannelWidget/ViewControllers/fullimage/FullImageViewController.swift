@@ -64,11 +64,13 @@ class FullImageViewController: UIViewController {
         }
         
         let backButton = self.backButton(self, action: #selector(FullImageViewController.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
         
         let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(FullImageViewController.share))
         shareButton.tintColor = UIColor.white
+        shareButton.qiscusHideSharedBackground()
         self.navigationItem.rightBarButtonItem = shareButton
 
     }
@@ -124,6 +126,7 @@ class FullImageViewController: UIViewController {
             
             let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(FullImageViewController.share))
             shareButton.tintColor = UIColor.white
+            shareButton.qiscusHideSharedBackground()
             self.navigationItem.rightBarButtonItem = shareButton
         }
         

@@ -14,9 +14,9 @@ class QismoNetworkManager {
     
     var qiscus: QiscusCore
     var qiscusUser: QAccount?
-    let urlInitiateChat = "https://qismo.qiscus.com/api/v2/qiscus/initiate_chat"
-    let urlSessionChat = "https://qismo.qiscus.com"
-    
+    let urlInitiateChat = "https://omnichannel.qiscus.com/api/v2/qiscus/initiate_chat"
+    let urlSessionChat = "https://omnichannel.qiscus.com"
+
     public init(qiscusCore : QiscusCore) {
         self.qiscus = qiscusCore
     }

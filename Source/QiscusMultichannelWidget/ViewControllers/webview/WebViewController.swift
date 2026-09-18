@@ -40,6 +40,7 @@ class WebViewController: UIViewController, WKUIDelegate {
         webView.load(myRequest)
         
         let backButton = self.backButton(self, action: #selector(WebViewController.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
         

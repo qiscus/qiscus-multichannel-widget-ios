@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
 s.name         = "QiscusMultichannelWidget"
 
-s.version      = "2.4.2"
+s.version      = "2.4.3"
 
 s.summary      = "Customer Chat integration."
 
@@ -13,7 +13,7 @@ s.license      = "MIT"
 
 s.author       = { "arief@qiscus.co" => "arief@qiscus.co" }
 
-s.platform     = :ios, "12.0"
+s.platform     = :ios, "15.0"
 s.swift_version = '4.2'
 s.source       = { :git => "https://github.com/qiscus/qiscus-multichannel-widget-ios", :tag => "#{s.version}" }
 

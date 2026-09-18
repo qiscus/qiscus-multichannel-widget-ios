@@ -344,22 +344,20 @@ class UIChatViewController: UIViewController {
     }
     
     private func backButton(_ target: UIViewController, action: Selector) -> UIBarButtonItem{
-        let backIcon = UIImageView()
-        backIcon.contentMode = .scaleAspectFit
-        
         let image = UIImage(named: "ic_arrow_back", in: QiscusMultichannelWidget.bundle, compatibleWith: nil)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        backIcon.image = image
-        backIcon.tintColor = ColorConfiguration.navigationTitleColor
-        backIcon.contentMode = .scaleAspectFit
-        if UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
-            backIcon.frame = CGRect(x: 0,y: 11,width: 30,height: 25)
-        }else{
-            backIcon.frame = CGRect(x: 22,y: 11,width: 30,height: 25)
-        }
-        
-        let backButton = UIButton(frame:CGRect(x: 0,y: 0,width: 30,height: 44))
-        backButton.addSubview(backIcon)
+
+        // laid out instead of frame-positioned: the navigation bar decides how
+        // tall a custom view gets, so a hardcoded frame drifts off centre
+        let backButton = UIButton(type: .system)
+        backButton.setImage(image, for: .normal)
+        backButton.tintColor = ColorConfiguration.navigationTitleColor
+        backButton.imageView?.contentMode = .scaleAspectFit
         backButton.addTarget(target, action: action, for: UIControl.Event.touchUpInside)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 30),
+            backButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
         return UIBarButtonItem(customView: backButton)
     }
     

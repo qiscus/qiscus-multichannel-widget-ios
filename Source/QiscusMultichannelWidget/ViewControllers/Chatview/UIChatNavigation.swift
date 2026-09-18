@@ -12,14 +12,17 @@ import QiscusCore
 import AlamofireImage
 
 class UIChatNavigation: UIView {
-    var contentsView            : UIView!
     // ui component
+    /// UIImageView avatar, hidden until an image is actually loaded
+    let ivAvatar: UIImageView = UIImageView()
     /// UILabel title,
-    @IBOutlet weak var ivAvatar: UIImageView!
-    @IBOutlet weak var labelTitle: UILabel!
-    /// UILabel subtitle
-    @IBOutlet weak var labelSubtitle: UILabel!
-    
+    let labelTitle: UILabel = UILabel()
+    /// UILabel subtitle, hidden while its text is empty
+    let labelSubtitle: UILabel = UILabel()
+
+    private let avatarSize: CGFloat = 32.0
+    private let contentStack: UIStackView = UIStackView()
+
     var room: QChatRoom? {
         set {
             self._room = newValue
@@ -39,44 +42,71 @@ class UIChatNavigation: UIView {
     override init(frame: CGRect) {
         // For use in code
         super.init(frame: frame)
-        let nib = UINib(nibName: "UIChatNavigation", bundle: QiscusMultichannelWidget.bundle)
-        commonInit(nib: nib)
+        commonInit()
     }
     
     // If someone is to initalize a UIChatInput in Storyboard setting the Custom Class of a UIView
     required init?(coder aDecoder: NSCoder) {
         // For use in Interface Builder
         super.init(coder: aDecoder)
-        let nib = UINib(nibName: "UIChatNavigation", bundle: QiscusMultichannelWidget.bundle)
-        commonInit(nib: nib)
+        commonInit()
     }
     
-    func commonInit(nib: UINib) {
-        self.contentsView = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        // 2. Adding the 'contentView' to self (self represents the instance of a WeatherView which is a 'UIView').
-        addSubview(contentsView)
-        
-        // 3. Setting this false allows us to set our constraints on the contentView programtically
-        contentsView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // 4. Setting the constraints programatically
-        contentsView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentsView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        contentsView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentsView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        
-        self.autoresizingMask  = (UIView.AutoresizingMask.flexibleWidth)
+    func commonInit() {
+        self.autoresizingMask = (UIView.AutoresizingMask.flexibleWidth)
         self.setupUI()
     }
     
     private func setupUI() {
-        if self.ivAvatar != nil {
-            self.ivAvatar.widthAnchor.constraint(equalToConstant: 30).isActive = true
-            self.ivAvatar.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            self.ivAvatar.frame.size.width = 30
-            self.ivAvatar.frame.size.height = 30
-            self.ivAvatar.layer.cornerRadius = self.ivAvatar.frame.height/2
+        self.ivAvatar.contentMode = .scaleAspectFill
+        self.ivAvatar.clipsToBounds = true
+        // the size is constrained to a constant, so the mask can be set once here;
+        // deriving it from `bounds` in layoutSubviews runs before the stack view
+        // has sized its arranged subviews and yields a radius of 0
+        self.ivAvatar.layer.cornerRadius = self.avatarSize / 2.0
+        self.ivAvatar.backgroundColor = .clear
+        // nothing to show until `present(room:)` actually resolves an image,
+        // otherwise the bar renders an empty circle next to the title
+        self.ivAvatar.isHidden = true
+        self.ivAvatar.setContentHuggingPriority(.required, for: .horizontal)
+        self.ivAvatar.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        self.labelTitle.font = UIFont.systemFont(ofSize: 14.0, weight: .semibold)
+        self.labelSubtitle.font = UIFont.systemFont(ofSize: 13.0)
+        for label in [self.labelTitle, self.labelSubtitle] {
+            label.textColor = .white
+            label.textAlignment = .natural
+            label.numberOfLines = 1
+            label.lineBreakMode = .byTruncatingTail
         }
+        self.labelSubtitle.isHidden = true
+
+        let textStack = UIStackView(arrangedSubviews: [self.labelTitle, self.labelSubtitle])
+        textStack.axis = .vertical
+        textStack.alignment = .leading
+        textStack.spacing = 1.0
+
+        self.contentStack.axis = .horizontal
+        self.contentStack.alignment = .center
+        self.contentStack.spacing = 8.0
+        self.contentStack.addArrangedSubview(self.ivAvatar)
+        self.contentStack.addArrangedSubview(textStack)
+        self.contentStack.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.contentStack)
+
+        NSLayoutConstraint.activate([
+            self.ivAvatar.widthAnchor.constraint(equalToConstant: self.avatarSize),
+            self.ivAvatar.heightAnchor.constraint(equalToConstant: self.avatarSize),
+
+            // the title view spans the whole gap between the bar button items, so the
+            // group sits on its leading edge next to the back button and is allowed to
+            // shrink rather than overflow
+            self.contentStack.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.contentStack.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.contentStack.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor),
+            self.contentStack.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor),
+            self.contentStack.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor)
+        ])
     }
     
     func present(room: QChatRoom) {
@@ -85,18 +115,36 @@ class UIChatNavigation: UIView {
         room.participants?.forEach({ (p) in
             if p.id.contains("admin@qismo.com") {
                 if let avatarURL = p.avatarUrl {
-                    if avatarURL.absoluteString == "https://image.flaticon.com/icons/svg/145/145867.svg"{
-                        self.ivAvatar.af_setImage(withURL: URL(string: "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/Ri-pxHv6e1/default_avatar.png" )!)
-                    }else{
-                        self.ivAvatar.af.setImage(withURL: avatarURL)
+                    if avatarURL.absoluteString == "https://image.flaticon.com/icons/svg/145/145867.svg" {
+                        if let defaultURL = URL(string: "https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/image/upload/Ri-pxHv6e1/default_avatar.png") {
+                            self.setAvatar(url: defaultURL)
+                        }
+                    } else {
+                        self.setAvatar(url: avatarURL)
                     }
                 }
             }
         })
     }
+
+    /// Loads the avatar and only reveals it once an image really arrived, so a
+    /// failed or missing avatar collapses out of the stack instead of leaving a gap.
+    private func setAvatar(url: URL) {
+        self.ivAvatar.af.setImage(withURL: url, completion: { [weak self] response in
+            guard let self = self else { return }
+            self.ivAvatar.isHidden = (response.value == nil)
+        })
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        // the subtitle doubles as the typing indicator and is emptied again
+        // afterwards, so keep its visibility in sync with its text
+        let hasSubtitle = !(self.labelSubtitle.text ?? "").isEmpty
+        if self.labelSubtitle.isHidden == hasSubtitle {
+            self.labelSubtitle.isHidden = !hasSubtitle
+        }
     }
     
 }

@@ -106,6 +106,7 @@ class NewQiscusUploaderVC: UIViewController, UIScrollViewDelegate {
         self.title = "Image"
         
         let backButton = self.backButton(self, action: #selector(NewQiscusUploaderVC.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
         self.navigationController?.navigationBar.barTintColor = ColorConfiguration.navigationColor
@@ -120,6 +121,7 @@ class NewQiscusUploaderVC: UIViewController, UIScrollViewDelegate {
             UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem:
             UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneClicked) )
+        doneButton.qiscusHideSharedBackground()
         
         keyboardToolBar.setItems([flexibleSpace, doneButton], animated: true)
         

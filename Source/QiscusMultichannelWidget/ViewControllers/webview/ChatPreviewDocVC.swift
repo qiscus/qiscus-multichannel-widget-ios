@@ -47,11 +47,13 @@ class ChatPreviewDocVC: UIViewController, UIWebViewDelegate, WKNavigationDelegat
         if !self.accountLinking {
             let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(ChatPreviewDocVC.share))
             shareButton.tintColor = UIColor.white
+            shareButton.qiscusHideSharedBackground()
             self.navigationItem.rightBarButtonItem = shareButton
         }
         
         
         let backButton = self.backButton(self, action: #selector(ChatPreviewDocVC.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
     }
@@ -226,6 +228,7 @@ class ChatPreviewDocVC: UIViewController, UIWebViewDelegate, WKNavigationDelegat
                         
                         let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(ChatPreviewDocVC.share))
                         shareButton.tintColor = UIColor.white
+                        shareButton.qiscusHideSharedBackground()
                         self.navigationItem.rightBarButtonItem = shareButton
                         
                         let file = [path]

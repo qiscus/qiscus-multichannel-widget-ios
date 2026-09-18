@@ -180,6 +180,7 @@ class QiscusUploaderVC: UIViewController, UIScrollViewDelegate,UITextViewDelegat
             UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem:
             UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneClicked) )
+        doneButton.qiscusHideSharedBackground()
         
         keyboardToolBar.setItems([flexibleSpace, doneButton], animated: true)
         

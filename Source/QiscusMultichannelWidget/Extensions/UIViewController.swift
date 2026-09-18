@@ -250,3 +250,20 @@ extension String {
         
     }
 }
+
+extension UIBarButtonItem {
+
+    /// Opts this item out of the shared background UIKit draws behind bar button
+    /// items starting on iOS 26 (the Liquid Glass capsule), so the widget navigation
+    /// bar keeps the flat look configured through `ColorConfiguration`.
+    ///
+    /// Compiled out entirely on toolchains older than Xcode 26, where the underlying
+    /// property does not exist yet.
+    func qiscusHideSharedBackground() {
+        #if compiler(>=6.2)
+        if #available(iOS 26.0, *) {
+            self.hidesSharedBackground = true
+        }
+        #endif
+    }
+}

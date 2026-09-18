@@ -83,6 +83,7 @@ class WebFileViewController: UIViewController {
         webView.loadFileURL(localFileUrl, allowingReadAccessTo: localFileUrl)
         
         let backButton = self.backButton(self, action: #selector(WebFileViewController.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
     }

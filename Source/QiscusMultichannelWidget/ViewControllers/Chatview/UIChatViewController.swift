@@ -314,6 +314,7 @@ class UIChatViewController: UIViewController {
         }
         
         let backButton = self.backButton(self, action: #selector(UIChatViewController.goBack))
+        backButton.qiscusHideSharedBackground()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.leftBarButtonItems = [backButton]
         
@@ -338,6 +339,7 @@ class UIChatViewController: UIViewController {
         self.chatTitleView.room = self.room
         
         let callButton = UIBarButtonItem(image: UIImage(named: "phone", in: QiscusMultichannelWidget.bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(call))
+        callButton.qiscusHideSharedBackground()
         self.navigationItem.rightBarButtonItem = callButton
     }
     
